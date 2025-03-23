@@ -3,30 +3,31 @@ package com.github.soh.autocommit.grassKeeper.batch.tasklet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@SuppressWarnings("deprecation")
 @Configuration
 @RequiredArgsConstructor
 public class AutoCommitJobConfig {
 
-    private final JobBuilderFactory jobBuilderFactory;
-    private final StepBuilderFactory stepBuilderFactory;
+    private final JobRepository jobRepository;
+    private final PlatformTransactionManager transactionManager;
     private final AutoCommitTasklet autoCommitTasklet;
 
     @Bean
     public Job autoCommitJob() {
-        return jobBuilderFactory.get("autoCommitJob")
+        return new JobBuilder("autoCommitJob", jobRepository)
                 .start(autoCommitStep())
                 .build();
     }
     @Bean
     public Step autoCommitStep() {
-        return stepBuilderFactory.get("autoCommitStep")
-                .tasklet(autoCommitTasklet)
+        return new StepBuilder("autoCommitStep", jobRepository)
+                .tasklet(autoCommitTasklet, transactionManager)
                 .build();
     }
 }

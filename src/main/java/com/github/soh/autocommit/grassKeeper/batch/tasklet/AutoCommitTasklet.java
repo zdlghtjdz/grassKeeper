@@ -6,6 +6,7 @@ import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -18,10 +19,10 @@ import java.util.Arrays;
 import java.util.Queue;
 
 @Slf4j
-
+@Component
 public class AutoCommitTasklet implements Tasklet {
 
-    private static final String QUEUE_DIR = "queue";
+    private static final String QUEUE_DIR = "C:\\queue";
     private static final String EMERGENCY_FILE = "emergency_commit.txt";
 
     @Override
