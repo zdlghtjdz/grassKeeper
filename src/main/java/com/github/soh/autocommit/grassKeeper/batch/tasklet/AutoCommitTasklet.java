@@ -40,25 +40,6 @@ public class AutoCommitTasklet implements Tasklet {
         File queueDir = new File(QUEUE_DIR);
         File[] files = queueDir.listFiles((dir, name) -> name.endsWith(".txt"));
 
-        if (!queueDir.exists()) {
-            System.out.println("❌ 디렉터리가 존재하지 않습니다: " + QUEUE_DIR);
-            return RepeatStatus.FINISHED;
-        }
-
-        if (files == null || files.length == 0) {
-            System.out.println("📭 처리할 파일이 없습니다.");
-            return RepeatStatus.FINISHED;
-        }
-
-        for(File file : files) {
-            System.out.println(file.getName());
-        }
-
-        if(files == null || files.length == 0) {
-            log.info("대기 중인 작업 없음");
-            return RepeatStatus.FINISHED;
-        }
-
         Arrays.sort(files);
         File latestTask = files[files.length - 1];
 
