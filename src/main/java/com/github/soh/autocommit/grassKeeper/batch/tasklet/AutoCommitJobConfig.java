@@ -1,5 +1,6 @@
 package com.github.soh.autocommit.grassKeeper.batch.tasklet;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -14,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class AutoCommitJobConfig {
 
+    @PostConstruct
+    public void init() {
+        System.out.println("AutoCommitJobConfig 초기화 완료");
+    }
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
     private final AutoCommitTasklet autoCommitTasklet;
