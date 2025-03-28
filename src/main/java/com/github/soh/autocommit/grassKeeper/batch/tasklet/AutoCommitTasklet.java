@@ -23,10 +23,6 @@ import java.util.Arrays;
 @Component
 public class AutoCommitTasklet implements Tasklet {
 
-    @PostConstruct
-    public void init() {
-        System.out.println("AutoCOmmitTasklet 빈 생성됨");
-    }
 
     private final BatchProperties batchProperties;
     // application.yml 설정으로 이관
