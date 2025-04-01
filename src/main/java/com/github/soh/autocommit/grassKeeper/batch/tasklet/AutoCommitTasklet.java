@@ -2,7 +2,6 @@ package com.github.soh.autocommit.grassKeeper.batch.tasklet;
 
 
 import com.github.soh.autocommit.grassKeeper.batch.property.BatchProperties;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
@@ -21,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.logging.SimpleFormatter;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -54,7 +52,7 @@ public class AutoCommitTasklet implements Tasklet {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Calendar c1 = Calendar.getInstance();
 
-                writer.write( sdf.format(c1.getTime()) + "일자 긴급 커밋 !");
+                writer.write( sdf.format(c1.getTime()) + " : emergency commit !");
             } catch (IOException exception) {
                 throw new RuntimeException("파일 생성 실패!", exception);
             }
