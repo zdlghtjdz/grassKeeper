@@ -12,11 +12,16 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.logging.SimpleFormatter;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -34,11 +39,31 @@ public class AutoCommitTasklet implements Tasklet {
 
         String QUEUE_DIR = batchProperties.getQueueDir();
         File queueDir = new File(QUEUE_DIR);
+
+        if(!queueDir.exists()) {
+            System.out.println("queueDir.exist?");
+        }
+
         File[] files = queueDir.listFiles((dir, name) -> name.endsWith(".txt"));
+
+        if(files == null || files.length == 0) {
+            String fileName = "auto-" + System.currentTimeMillis() + ".txt";
+            File newFile = new File(queueDir, fileName);
+
+            try (FileWriter writer = new FileWriter(newFile)){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Calendar c1 = Calendar.getInstance();
+
+                writer.write( sdf.format(c1.getTime()) + "일자 긴급 커밋 !");
+            } catch (IOException exception) {
+                throw new RuntimeException("파일 생성 실패!", exception);
+            }
+
+            files = new File[]{newFile};
+        }
 
         Arrays.sort(files);
         File latestTask = files[files.length - 1];
-
         Files.copy(latestTask.toPath(), Paths.get(EMERGENCY_FILE), StandardCopyOption.REPLACE_EXISTING);
 
         commitToGit();
