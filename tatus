@@ -1,0 +1,119 @@
+[33mcommit 300e90c3e12f557230aadc6a35108e426ff40143[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Wed Apr 2 00:05:00 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Wed Apr 2 00:05:00 2025 +0900
+
+    긴급 커밋 파일 깨짐 수정, Scheduler 추가. 내일 테스트 예정
+
+[33mcommit fbc8ff6a23d3d60a53dc924e0c87d2d9e4200c17[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Tue Apr 1 23:30:04 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Tue Apr 1 23:30:04 2025 +0900
+
+    경로에 파일 없을 시 자동 생성 후 commit하도록 기능 수정
+
+[33mcommit 108326df3089c0ecc6735ebe150a4f055b9be758[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Tue Apr 1 23:28:52 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Tue Apr 1 23:28:52 2025 +0900
+
+    긴급 자동 커밋: 2025-04-01T23:28:52.334807700
+
+[33mcommit 22839bbe0bfc7ae38fc918bba8718fa4a9b02415[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Mon Mar 31 23:32:28 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Mon Mar 31 23:32:28 2025 +0900
+
+    긴급 자동 커밋: 2025-03-31T23:32:28.802257800
+
+[33mcommit 174e86366d85fc61fcb8ada33e522428c1a251a5[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Sun Mar 30 23:06:32 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Sun Mar 30 23:06:32 2025 +0900
+
+    긴급 자동 커밋: 2025-03-30T23:06:32.156602200
+
+[33mcommit 4dbfc6b027cbca8853319cb52210e829f31c55bf[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Sat Mar 29 23:30:56 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Sat Mar 29 23:30:56 2025 +0900
+
+    긴급 자동 커밋: 2025-03-29T23:30:56.673389400
+
+[33mcommit 4184c7917bc737f8ba6fdf3199d404957928115e[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Fri Mar 28 22:56:16 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Fri Mar 28 22:56:16 2025 +0900
+
+    PostConstructor 삭제
+
+[33mcommit a7bff58d2f99ea54fdc472e5b3bdb6c92a94b82c[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Thu Mar 27 00:22:04 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Thu Mar 27 00:22:04 2025 +0900
+
+    spring-batch 동작 시 필요한 쿼리 github에서 가져옴
+
+[33mcommit 005e47f943e49af5e65800884e8d02bf38868f10[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Thu Mar 27 00:21:03 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Thu Mar 27 00:21:03 2025 +0900
+
+    Job 현재 정상동작 후 커밋까지 되는 것 확인함
+
+[33mcommit c2784763ffff538a64047c9b167d6cd68333331c[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Thu Mar 27 00:17:41 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Thu Mar 27 00:17:41 2025 +0900
+
+    긴급 자동 커밋: 2025-03-27T00:17:41.853395
+
+[33mcommit 7b5c09fca47dab4e6e38dd2b8493c0eaf8187a49[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Thu Mar 27 00:14:46 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Thu Mar 27 00:14:46 2025 +0900
+
+    긴급 자동 커밋: 2025-03-27T00:14:45.941653200
+
+[33mcommit dd68f51a58faa1e10fa2c2540183d98a7710f909[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Wed Mar 26 23:58:02 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Wed Mar 26 23:58:02 2025 +0900
+
+    Job 동작하지 않는 이유 확인중
+
+[33mcommit 2ced2f10026d9dd0512ce352ecd78cad8cdbf40c[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Tue Mar 25 02:39:37 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Tue Mar 25 02:39:37 2025 +0900
+
+    README.md 추가
+
+[33mcommit 07423876d5d60de2dada7d10b4204c5c31644df3[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Mon Mar 24 01:15:20 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Mon Mar 24 01:15:20 2025 +0900
+
+    배치 기능 수정중
+
+[33mcommit 67ce4a43ab0a8e574f576d0182f2302066cdab8d[m
+Author:     leehoseong <zdlghtjdz@naver.com>
+AuthorDate: Sun Mar 23 23:34:19 2025 +0900
+Commit:     leehoseong <zdlghtjdz@naver.com>
+CommitDate: Sun Mar 23 23:34:19 2025 +0900
+
+    Init : first commit for grassKeeper
