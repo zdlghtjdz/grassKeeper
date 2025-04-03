@@ -1,5 +1,6 @@
 batch:
   queue-dir: C:/queue
+  repo-dir: C:/grassKeeper
 
 spring:
   datasource:

@@ -10,4 +10,5 @@ import org.springframework.stereotype.Component;
 @Getter @Setter
 public class BatchProperties {
     private String queueDir;
+    private String repoDir;
 }

@@ -31,15 +31,21 @@ public class AutoCommitTasklet implements Tasklet {
     // application.yml 설정으로 이관
     //private static final String QUEUE_DIR = "C:\\queue";
     private static final String EMERGENCY_FILE = "emergency_commit.txt";
-
+    private String REPO_DIR;
+    private String QUEUE_DIR;
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
-        String QUEUE_DIR = batchProperties.getQueueDir();
+        QUEUE_DIR = batchProperties.getQueueDir();
+        REPO_DIR = batchProperties.getRepoDir();
         File queueDir = new File(QUEUE_DIR);
 
         if(!queueDir.exists()) {
             System.out.println("queueDir.exist?");
+        }
+        if("".equals(REPO_DIR)) {
+            System.out.println("REPO exist?");
+            return RepeatStatus.FINISHED;
         }
 
         File[] files = queueDir.listFiles((dir, name) -> name.endsWith(".txt"));
@@ -62,7 +68,7 @@ public class AutoCommitTasklet implements Tasklet {
 
         Arrays.sort(files);
         File latestTask = files[files.length - 1];
-        Files.copy(latestTask.toPath(), Paths.get(EMERGENCY_FILE), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(latestTask.toPath(), Paths.get(REPO_DIR, EMERGENCY_FILE), StandardCopyOption.REPLACE_EXISTING);
 
         commitToGit();
 
@@ -78,8 +84,13 @@ public class AutoCommitTasklet implements Tasklet {
 
     private void commitToGit() throws Exception {
         String timestamp = LocalDateTime.now().toString();
-        Runtime.getRuntime().exec("git add " + EMERGENCY_FILE);
-        Runtime.getRuntime().exec("git commit -m \"긴급 자동 커밋: " + timestamp + "\"");
-        Runtime.getRuntime().exec("git push");
+        //Process process = Runtime.getRuntime().exec("git add " + EMERGENCY_FILE);
+        File repoDir = new File(REPO_DIR);
+
+        Process process = Runtime.getRuntime().exec(new String[]{"git", "add", EMERGENCY_FILE}, null, repoDir);
+        //Runtime.getRuntime().exec("git commit -m \"긴급 자동 커밋: " + timestamp + "\"");
+        Runtime.getRuntime().exec(new String[]{"git", "commit", "-m", "긴급 자동 커밋: ", timestamp}, null, repoDir);
+        Runtime.getRuntime().exec(new String[]{"git", "push"}, null, repoDir);
+        //Runtime.getRuntime().exec("git push");
     }
 }
