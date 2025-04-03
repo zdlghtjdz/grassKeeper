@@ -10,9 +10,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -55,7 +53,7 @@ public class AutoCommitTasklet implements Tasklet {
             File newFile = new File(queueDir, fileName);
 
             try (FileWriter writer = new FileWriter(newFile)){
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Calendar c1 = Calendar.getInstance();
 
                 writer.write( sdf.format(c1.getTime()) + " : emergency commit !");
@@ -84,13 +82,36 @@ public class AutoCommitTasklet implements Tasklet {
 
     private void commitToGit() throws Exception {
         String timestamp = LocalDateTime.now().toString();
-        //Process process = Runtime.getRuntime().exec("git add " + EMERGENCY_FILE);
+        //Runtime.getRuntime().exec("git add " + EMERGENCY_FILE);
         File repoDir = new File(REPO_DIR);
 
-        Process process = Runtime.getRuntime().exec(new String[]{"git", "add", EMERGENCY_FILE}, null, repoDir);
+        Process add = Runtime.getRuntime().exec(new String[]{"git", "add", "."}, null, repoDir);
+        int addExit = add.waitFor();
+
+        try (BufferedReader err = new BufferedReader(new InputStreamReader(add.getErrorStream()))) {
+            String line;
+            while ((line = err.readLine()) != null) {
+                System.err.println("git add error: " + line);
+            }
+        }
+
         //Runtime.getRuntime().exec("git commit -m \"긴급 자동 커밋: " + timestamp + "\"");
-        Runtime.getRuntime().exec(new String[]{"git", "commit", "-m", "긴급 자동 커밋: ", timestamp}, null, repoDir);
-        Runtime.getRuntime().exec(new String[]{"git", "push"}, null, repoDir);
+        Process commit = Runtime.getRuntime().exec(new String[]{"git", "commit", "-m", "긴급 자동 커밋: ", timestamp}, null, repoDir);
+        int commitExit = commit.waitFor();
+
+        try (BufferedReader err = new BufferedReader(new InputStreamReader(commit.getErrorStream()))) {
+            String line;
+            while ((line = err.readLine()) != null) {
+                System.err.println("git commit error: " + line);
+            }
+        }
+
+        Process push = Runtime.getRuntime().exec(new String[]{"git", "push"}, null, repoDir);
+        int pushExit = push.waitFor();
+
+        System.out.println("addExit : " + addExit);
+        System.out.println("commitExit : " + commitExit);
+        System.out.println("pushExit : " + pushExit);
         //Runtime.getRuntime().exec("git push");
     }
 }

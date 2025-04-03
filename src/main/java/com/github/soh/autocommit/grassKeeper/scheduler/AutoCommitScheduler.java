@@ -17,7 +17,7 @@ public class AutoCommitScheduler {
     private final Job autoCommitJob;
 
 
-    @Scheduled(cron = "0 55 23 * * *") // 매일 22시 30분
+    @Scheduled(cron = "0 13 00 * * *") // 매일 22시 30분
     public void runAutoCommitJob() {
         try {
             JobParameters params = new JobParametersBuilder()
